@@ -1,7 +1,5 @@
 # soap_consulta.py
-import hashlib
 import requests
-from zeep import Client
 from datetime import date
 
 def verificar_wsdl(wsdl_url):

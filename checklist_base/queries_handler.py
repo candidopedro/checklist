@@ -1,26 +1,22 @@
-from banco import banco_pge_digital_58, banco_eventos_223
+from banco import banco_main
 
 # <<<<<<<<<<<<<<<<<-Disponibilidade dos Tribunais-<<<<<<<<<<<<<<<<<<<<< -HU1/HU2
-def carregar_tribunais(sigla):
-    conn = banco_pge_digital_58()
+def carregar_informacoes(sigla):
+    conn = banco_main()
     cursor = conn.cursor()
     cursor.execute(f'''
-            SELECT id, sigla, descricao, identificador_cnj, wsdl, id_consultante, senha_consultante 
-        FROM dbo.mni_tribunal
-        where sigla = '{sigla}';
+            SELECT ';
         ''')
     
-    tribunais = []
+    dados = []
     
     row = cursor.fetchall()[0]
     tribunal_id, sigla, descricao, _, wsdl, id_consultante, senha_consultante = row
-    tribunais.append({
+    dados.append({
         "id": tribunal_id,
         "sigla": sigla or descricao,
         "wsdl": wsdl,
-        "id_consultante": id_consultante,
-        "senha_consultante": senha_consultante
     })
 
     conn.close()
-    return tribunais
+    return dados
