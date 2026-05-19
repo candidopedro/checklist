@@ -1,6 +1,6 @@
 import pyodbc
 
-def banco_pge_digital_58():
+def banco_main():
     return pyodbc.connect(
         'DRIVER={ODBC Driver 18 for SQL Server};'
         'Encrypt=no;'
