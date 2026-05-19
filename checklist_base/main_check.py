@@ -1,3 +1,9 @@
+# Limpeza e reestruturação  
+# Objetivo: Enviar notificações (Email, telegram & --Whatsapp--) baseando-se nas informações extraidas de um banco de dados MySQL
+# 
+# Criar planilha via Pandas - NEW!!
+
+
 import os
 import re
 from datetime import datetime
@@ -8,8 +14,6 @@ from soap_consulta import verificar_wsdl, consultar_processo
 from notificacao import enviar_email, mensagem_telegram
 from gerenciador_diretorios import log_monitoramento
 from saudacoes_email import saudacao
-
-from consulta_feriados import verificacao_final
 
 LOG_DIR = log_monitoramento()
 
@@ -119,69 +123,17 @@ def verificar_todos_os_tribunais():
     print(f"\n🕒 Verificação iniciada: {datetime.now().strftime('%d/%m/%Y ás %H:%M:%S')}")
     print("═" * 55)
 
-    tribunais = verificacao_final()
 
     alertas = []
     mensagens_finais = []
     blocos_por_tribunal = {}
 
-    for dados in tribunais:
-        tribunal_id = dados["id"]
-
-        if dados["sigla"] == "PJE223":
-            print(f"⏭️ Ignorando tribunal {dados['sigla']}")
-            continue
-
-        sigla, alerta, bloco = verificar_tribunal(tribunal_id, dados)
-
-        DIVISORIA = "═" * 22
-        print(f"\n{DIVISORIA}\n{bloco}\n{DIVISORIA}\n")
-
-        mensagens_finais.append(bloco)
-        blocos_por_tribunal[sigla] = bloco
-
-        if alerta:
-            alertas.append(alerta)
-
-    # --- Comparar logs antigos x atuais
-    caminho_log_antigo = os.path.join(LOG_DIR, "ultimo_log.txt")
-    erros_antigos = {}
-
-    if os.path.exists(caminho_log_antigo):
-        with open(caminho_log_antigo, "r", encoding="utf-8") as f:
-            erros_antigos = extrair_erros_do_log(f.read())
-
-    erros_atuais = extrair_erros_do_log("\n".join(alertas))
-    tribunais_com_erro = [
-        sigla for sigla in erros_atuais
-        if erros_antigos.get(sigla) != erros_atuais[sigla]
-    ]
 
     # --- Corpo do email / mensagem
     inicio_email = saudacao()
     corpo_mensagem = inicio_email + "Segue o status atualizado das consultas via MNI:\n\n"
 
-    if tribunais_com_erro:
-        corpo_mensagem += "⚠️ Detalhes dos tribunais com erros:\n\n"
-        for sigla in tribunais_com_erro:
-            corpo_mensagem += DIVISORIA + "\n"
-            corpo_mensagem += blocos_por_tribunal[sigla] + "\n\n"
-    else:
-        corpo_mensagem += "🟢 Nenhum tribunal apresentou erro.\n"
-
-    # --- Salvar log
-    if alertas:
-        salvar_log("ultimo_log.txt", alertas)
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        salvar_log(f"log_{timestamp}.log", alertas)
-
-    # --- Enviar notificações
-    if tribunais_com_erro:
-        mensagem_telegram(corpo_mensagem)
-        enviar_email("🚨 Falha em tribunais detectada", corpo_mensagem)  # ativar se quiser email
-    else:
-        print("🟢 Nenhum novo erro detectado.")
-
+    
 if __name__ == "__main__" :
     while True:
         verificar_todos_os_tribunais()
