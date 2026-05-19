@@ -9,11 +9,14 @@ from gerenciador_diretorios import local_estimativa_de_email
 
 #variaveis globais
 
+#Verifica da integridade de cada endereço de email.
+#  -- INTEGRAR GMAIL ---
+
 def validacao_emails_e_tempo_de_envio():
     with smtplib.SMTP("smtp.pge.rj.gov.br", 25) as server:
         inicio_teste_envio = time.time()
         server.ehlo() 
-        server.mail("candidop@pge.rj.gov.br")
+        server.mail("pedro.s.candido@gmail.com")
 
         email_validos = 0
         email_invalidos = ""

@@ -4,17 +4,6 @@ Este projeto em Python realiza o **monitoramento automatizado de serviços de tr
 
 ## 📁 Estrutura do Projeto
 
-- `main.py` – Ponto de entrada principal do sistema.
-- `monitoramento.py` – Orquestra verificações e relatórios.
-- `consulta_avisos.py`, `consulta_madrugada.py`, `consulta_retorno.py` – Módulos específicos de consulta a serviços judiciais.
-- `consulta_feriados.py`, `feriados_teste.py` – Verificação de feriados nacionais e locais.
-- `soap_consulta.py`, `wsdl.py` – Integração com serviços SOAP dos tribunais.
-- `pdf_consulta.py` – Processamento de documentos PDF retornados.
-- `notificacao.py`, `enderecos_email.py`, `numeros_whatsapp.py` – Envio de alertas via e-mail e WhatsApp.
-- `banco.py` – Conexão e consultas ao banco de dados.
-- `log_comparacao.py` – Análise de mudanças nos logs.
-- `__init__.py` – Arquivo para definir como pacote.
-
 ## ⚙️ Requisitos
 
 - Python 3.8+
@@ -48,7 +37,6 @@ Este projeto em Python realiza o **monitoramento automatizado de serviços de tr
 
 ## 📬 Funcionalidades
 
-- 🔍 Consulta automatizada de processos judiciais por tribunal.
+- 🔍 Consulta automatizada de processos.
 - 📤 Envio de notificações por e-mail e WhatsApp.
 - 📊 Geração de logs comparativos e relatórios de falhas.
-- 📅 Verificação de feriados e controle de execução por horário.

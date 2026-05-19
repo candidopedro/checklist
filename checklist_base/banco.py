@@ -1,10 +1,10 @@
 import pyodbc
 
-def banco_pge_digital_58():
+def banco_main():
     return pyodbc.connect(
         'DRIVER={ODBC Driver 18 for SQL Server};'
         'Encrypt=no;'
-        'SERVER=10.120.100.58;'
+        'SERVER=//DIGITE O ENDERECO DO BANCO//;'
         'DATABASE=//DIGITE O DATABASE//;'
         'UID=//USURIO//;'
         'PWD=//PWD//'

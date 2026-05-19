@@ -16,10 +16,11 @@ from datetime import datetime
 
 # TELEGRAM
 def mensagem_telegram(corpo):
+    #Envia as informações em um chat especifico
     print(" "*15 , "🤖 Enviando notificação via Telegram...")
 
-    TOKEN = '7825831398:AAGXvmrUH1b0vAxMNNLf_ux-3p9cjvwk3qU'
-    CHAT_ID = '-1002625784842'
+    TOKEN = 'TOKEN-DO-BOT-CRIADO'
+    CHAT_ID = '-ID-DO-CHAT-'
     MAX_LENGTH = 4096
 
     def enviar_parte(texto):
@@ -47,8 +48,8 @@ def mensagem_telegram(corpo):
 def enviar_pdf_telegram(caminho_pdf, legenda=None):
     print(f"{' '*20}📄 Enviando PDF via Telegram...")
 
-    TOKEN = '7825831398:AAGXvmrUH1b0vAxMNNLf_ux-3p9cjvwk3qU'
-    CHAT_ID = '-1002625784842'
+    TOKEN = 'TOKEN-DO-BOT-CRIADO'
+    CHAT_ID = '-ID-DO-CHAT-'
     url = f"https://api.telegram.org/bot{TOKEN}/sendDocument"
 
     with open(caminho_pdf, 'rb') as pdf_file:
@@ -68,7 +69,7 @@ def enviar_pdf_telegram(caminho_pdf, legenda=None):
 
 # EMAIL
 def enviar_email(assunto, corpo):
-    remetente = 'candidop@pge.rj.gov.br'
+    remetente = 'pedro.s.candido@gmail.com'
 
     try:
         server = smtplib.SMTP('smtp.pge.rj.gov.br', 25)
@@ -86,7 +87,7 @@ def enviar_email(assunto, corpo):
         
 #PDF POR EMAIL
 def enviar_pdf_email(assunto, corpo, caminho_pdf):
-    remetente = 'candidop@pge.rj.gov.br'
+    remetente = 'pedro.s.candido@gmail.comn'
 
     if not os.path.exists(caminho_pdf):
         print(f"{' '*12}⚠️ Arquivo PDF não encontrado: {caminho_pdf}")
