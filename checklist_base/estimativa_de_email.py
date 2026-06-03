@@ -7,8 +7,6 @@ from enderecos_email_pdf import lista_emails_pdf
 from notificacao import mensagem_telegram
 from gerenciador_diretorios import local_estimativa_de_email
 
-#variaveis globais
-
 #Verifica da integridade de cada endereço de email.
 #  -- INTEGRAR GMAIL ---
 

@@ -20,27 +20,25 @@ LOG_DIR = log_monitoramento()
 # ------------- GERAR LOG/ COMPARAR 
 #def salvar_log():
 
-
 #def extrair_erros_do_log():
 
-def verificar_itens():
-    print("\n" + "═" * 55)
-    print("🔍 Iniciando Verificação ")
-    print(f"\n🕒 Verificação iniciada: {datetime.now().strftime('%d/%m/%Y ás %H:%M:%S')}")
-    print("═" * 55)
+class EnviarNotificacao:
+
+    def __init__(self):
 
 
-    alertas = []
-    mensagens_finais = []
-    blocos_por_tribunal = {}
+    def verificar_itens():
+        print("\n" + "═" * 55)
+        print("🔍 Iniciando Verificação ")
+        print(f"\n🕒 Verificação iniciada: {datetime.now().strftime('%d/%m/%Y ás %H:%M:%S')}")
+        print("═" * 55)
 
-
-    # --- Corpo do email / mensagem
-    inicio_email = saudacao()
-    corpo_mensagem = inicio_email
+        # --- Corpo do email / mensagem
+        inicio_email = saudacao()
+        corpo_mensagem = inicio_email
 
     
 if __name__ == "__main__" :
     while True:
-        verificar_itens()
+        EnviarNotificacao.verificar_itens()
         time.sleep(300)
